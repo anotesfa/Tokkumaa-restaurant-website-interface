@@ -1,0 +1,28 @@
+{
+  "name": "tokkumaa-restaurant",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Tokkumaa Restaurant - A premium Ethiopian restaurant ordering website built with React.js",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "serve": "vite preview --port 3000"
+  },
+  "keywords": ["restaurant", "food", "ordering", "react", "vite", "bootstrap"],
+  "author": "Your Name",
+  "license": "MIT",
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.0.5",
+    "typescript": "~6.0.2",
+    "vite": "^8.2.0"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.8",
+    "bootstrap-icons": "^1.13.1",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "react-router-dom": "^7.18.2"
+  }
+}

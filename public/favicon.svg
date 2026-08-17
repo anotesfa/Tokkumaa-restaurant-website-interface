@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <!-- Ethiopian flag colors background -->
+  <rect width="32" height="11" fill="#228B22" />
+  <rect y="11" width="32" height="10" fill="#FFD700" />
+  <rect y="21" width="32" height="11" fill="#DC143C" />
+  
+  <!-- Coffee bean symbol -->
+  <ellipse cx="16" cy="16" rx="6" ry="9" fill="#8B4513" transform="rotate(15 16 16)" />
+  <ellipse cx="16" cy="16" rx="4" ry="7" fill="#A0522D" transform="rotate(15 16 16)" />
+  
+  <!-- Central star (Ethiopian star) -->
+  <g fill="#FFD700" stroke="#000" stroke-width="0.5">
+    <polygon points="16,6 18,12 24,12 19.5,16 22,22 16,18 10,22 12.5,16 8,12 14,12" opacity="0.8"/>
+  </g>
+</svg>
