@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        img { max-width: 300px; border: 1px solid #ccc; margin: 10px; }
+        .error { color: red; }
+        .success { color: green; }
+    </style>
+</head>
+<body>
+    <h1>Image Loading Test</h1>
+    <p>Testing if carousel images load correctly:</p>
+    
+    <div>
+        <h3>Top Rated Items (used in carousel):</h3>
+        <img src="/menu-images/traditional-doro-wat-1.jpg" alt="Doro Wat" onload="this.nextSibling.innerHTML='✅ Loaded'" onerror="this.nextSibling.innerHTML='❌ Failed'">
+        <span class="loading">Loading...</span><br>
+        
+        <img src="/menu-images/combo-tokkumaa-special-combo-10.jpg" alt="Special Combo" onload="this.nextSibling.innerHTML='✅ Loaded'" onerror="this.nextSibling.innerHTML='❌ Failed'">
+        <span class="loading">Loading...</span><br>
+        
+        <img src="/menu-images/beverage-ethiopian-coffee-12.jpg" alt="Ethiopian Coffee" onload="this.nextSibling.innerHTML='✅ Loaded'" onerror="this.nextSibling.innerHTML='❌ Failed'">
+        <span class="loading">Loading...</span><br>
+        
+        <img src="/menu-images/traditional-kitfo-2.jpg" alt="Kitfo" onload="this.nextSibling.innerHTML='✅ Loaded'" onerror="this.nextSibling.innerHTML='❌ Failed'">
+        <span class="loading">Loading...</span><br>
+    </div>
+    
+    <p>If images appear above, the paths are working correctly. If not, there's a server issue.</p>
+    <p><strong>Test URL:</strong> <a href="http://localhost:5174/test-image.html">http://localhost:5174/test-image.html</a></p>
+</body>
+</html>

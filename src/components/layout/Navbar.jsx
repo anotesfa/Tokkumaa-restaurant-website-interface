@@ -35,10 +35,10 @@ const Navbar = () => {
         {/* Brand */}
         <Link className="navbar-brand fw-bold" to="/">
           <img 
-            src="/src/assets/Tokkuma-logo.png" 
+            src="/Tokkuma-logo.png" 
             alt="Tokkumaa Restaurant" 
             height="40" 
-            className="d-inline-block align-top me-2"
+            className="d-inline-block align-top me-2 floating"
           />
           Tokkumaa
         </Link>

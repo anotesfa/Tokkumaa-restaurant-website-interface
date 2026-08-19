@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { menuData, categories, popularItems, featuredItems } from '../data/menuData';
+import { menuData, popularItems, featuredItems } from '../data/menuData';
 import FoodCard from '../components/food/FoodCard';
 import AnimateOnScroll from '../components/common/AnimateOnScroll';
 import ImagePreloader from '../components/common/ImagePreloader';
@@ -12,9 +12,18 @@ const Home = () => {
 
   // Get top rated items for the hero carousel
   const getTopRatedItems = () => {
-    return menuData
+    const topItems = menuData
       .sort((a, b) => b.rating - a.rating)
       .slice(0, 8); // Top 8 best rated items
+    
+    // Debug logging
+    console.log('Top rated items for carousel:', topItems.map(item => ({
+      name: item.name,
+      rating: item.rating,
+      image: item.image
+    })));
+    
+    return topItems;
   };
 
   // Carousel functionality
@@ -95,8 +104,17 @@ const Home = () => {
       {/* Hero Section - Split Layout */}
       <section className="hero-section-split">
         <div className="hero-background-overlay"></div>
-        <div className="container-fluid h-100">
-          <div className="row h-100 align-items-center">
+        
+        {/* Floating Particles */}
+        <div className="hero-particles">
+          <div className="particle"></div>
+          <div className="particle"></div>
+          <div className="particle"></div>
+          <div className="particle"></div>
+          <div className="particle"></div>
+        </div>
+        
+        <div className="container-fluid h-100">\n          <div className="row h-100 align-items-center">
             {/* Left Side - Savor Every Moment */}
             <div className="col-lg-6 col-md-12 hero-left-section">
               <div className="hero-content-left">
@@ -163,7 +181,10 @@ const Home = () => {
                               src={item.image} 
                               alt={item.name}
                               className="card-image"
-                              loading="lazy"
+                              loading="eager"
+                              onError={(e) => {
+                                e.target.src = "data:image/svg+xml,%3Csvg width='300' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='300' height='200' fill='%23FF6B35'/%3E%3Ctext x='50%25' y='50%25' font-size='24' fill='white' text-anchor='middle' dy='.3em'%3E🍽️%3C/text%3E%3C/svg%3E";
+                              }}
                             />
                             <div className="rating-badge">
                               <i className="bi bi-star-fill"></i>
@@ -185,7 +206,7 @@ const Home = () => {
                                 <span className="price-hero">${item.price}</span>
                               </div>
                               <Link 
-                                to={`/menu/${item.id}`} 
+                                to={`/food/${item.id}`} 
                                 className="btn btn-sm btn-hero-card"
                               >
                                 <i className="bi bi-plus-circle me-1"></i>
@@ -268,70 +289,6 @@ const Home = () => {
               </Link>
             </div>
           </AnimateOnScroll>
-        </div>
-      </section>
-
-      {/* Section Separator */}
-      <div className="section-separator"></div>
-
-      {/* Food Categories Section */}
-      <section className="py-5 section-navy-secondary navy-section">
-        <div className="section-overlay-light"></div>
-        <div className="container position-relative" style={{ zIndex: 10 }}>
-          <AnimateOnScroll animation="slide-up">
-            <div className="row mb-5">
-              <div className="col-12 text-center">
-                <div className="section-badge mb-4">
-                  <i className="bi bi-grid-3x3-gap me-2"></i>
-                  Menu Categories
-                </div>
-                <h2 className="display-4 fw-bold mb-4 text-white section-title">
-                  Explore Our <span className="text-gradient">Culinary Collections</span>
-                </h2>
-                <p className="lead text-white-muted section-description">
-                  Discover handcrafted dishes from our expertly curated menu categories, 
-                  each featuring authentic flavors and premium ingredients
-                </p>
-                <div className="section-divider mx-auto mt-4"></div>
-              </div>
-            </div>
-          </AnimateOnScroll>
-
-          <div className="row g-4">
-            {categories.filter(cat => cat.id !== 'all').map((category, index) => (
-              <div key={category.id} className="col-lg-3 col-md-4 col-sm-6">
-                <AnimateOnScroll 
-                  animation="slide-in-left" 
-                  delay={index * 80}
-                >
-                  <Link 
-                    to={`/menu?category=${category.id}`}
-                    className="text-decoration-none"
-                  >
-                    <div className="category-card-modern card h-100 shadow-sm border-0 hover-lift">
-                      <div className="card-body text-center p-4">
-                        <div className="category-icon-wrapper mb-3">
-                          <div className="category-icon-bg">
-                            <i className={`bi ${getCategoryIcon(category.id)} category-icon`}></i>
-                          </div>
-                        </div>
-                        <h5 className="card-title fw-bold mb-2 text-white">{category.name}</h5>
-                        <p className="card-text text-white-muted small mb-3">
-                          {category.count} delicious options
-                        </p>
-                        <div className="category-cta">
-                          <span className="category-link">
-                            Explore Collection
-                            <i className="bi bi-arrow-right ms-2"></i>
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </Link>
-                </AnimateOnScroll>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -571,22 +528,6 @@ const Home = () => {
       </section>
     </div>
   );
-};
-
-// Helper function to get category icons with more variety
-const getCategoryIcon = (categoryId) => {
-  const icons = {
-    burgers: 'bi-burger',
-    pizza: 'bi-circle-fill',
-    pasta: 'bi-bowl-hot',
-    chicken: 'bi-egg-fried', 
-    seafood: 'bi-water',
-    salads: 'bi-leaf',
-    sandwiches: 'bi-layers-half',
-    desserts: 'bi-cake2-fill',
-    drinks: 'bi-cup-straw'
-  };
-  return icons[categoryId] || 'bi-dish';
 };
 
 export default Home;
